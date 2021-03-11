@@ -10,13 +10,10 @@ import * as bcrypt from 'bcrypt';
 import { Ride } from 'src/ride/entities/ride.entity';
 
 @Entity()
-@Unique(['username', 'email'])
+@Unique(['email'])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column()
-  username: string;
 
   @Column()
   email: string;

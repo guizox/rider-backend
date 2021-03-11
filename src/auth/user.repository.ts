@@ -10,13 +10,12 @@ import * as bcrypt from 'bcrypt';
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
   async signUp(authCredentialsDTO: AuthCredentialsDTO): Promise<void> {
-    const { password, username, email } = authCredentialsDTO;
+    const { password, email } = authCredentialsDTO;
 
     const salt = await bcrypt.genSalt();
 
     const user = new User();
 
-    user.username = username;
     user.salt = salt;
     user.password = await this.hashPassowrd(password, user.salt);
     user.email = email;
@@ -39,12 +38,12 @@ export class UserRepository extends Repository<User> {
   async validateUserPassword(
     authCredentialsDTO: AuthCredentialsDTO,
   ): Promise<string> {
-    const { username, password } = authCredentialsDTO;
+    const { email, password } = authCredentialsDTO;
 
-    const user = await this.findOne({ username });
+    const user = await this.findOne({ email });
 
     if (user && (await user.validatePassword(password))) {
-      return user.username;
+      return user.email;
     } else {
       null;
     }
