@@ -9,11 +9,12 @@ export class RideRepository extends Repository<Ride> {
     const { amount, category, description } = createRideDTO;
 
     const ride = new Ride();
+
     ride.amount = amount;
     ride.category = category;
     ride.description = description;
+    ride.createdAt = createRideDTO.date || new Date();
 
-    console.log(user);
     ride.userId = user.id;
     try {
       await ride.save();
