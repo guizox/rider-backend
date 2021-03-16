@@ -10,5 +10,5 @@ export class CreateRideDto {
   @IsNotEmpty()
   category: string;
 
-  date?: Date;
+  createdAt?: string;
 }

@@ -6,14 +6,14 @@ import { Ride } from './entities/ride.entity';
 @EntityRepository(Ride)
 export class RideRepository extends Repository<Ride> {
   async createRide(createRideDTO: CreateRideDto, user: User): Promise<Ride> {
-    const { amount, category, description } = createRideDTO;
+    const { amount, category, description, createdAt } = createRideDTO;
 
     const ride = new Ride();
 
     ride.amount = amount;
     ride.category = category;
     ride.description = description;
-    ride.createdAt = createRideDTO.date || new Date();
+    ride.createdAt = createdAt || new Date().toString();
 
     ride.userId = user.id;
     try {
