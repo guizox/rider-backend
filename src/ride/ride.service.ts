@@ -54,7 +54,7 @@ export class RideService {
         );
     }
 
-    return await queryBuilder.getRawMany();
+    return await queryBuilder.getMany();
   }
 
   async findOne(id: number, user: User) {
@@ -82,6 +82,6 @@ export class RideService {
       .where({ userId: user.id })
       .groupBy('category');
 
-    return await queryBuilder.getRawMany();
+    return await queryBuilder.getMany();
   }
 }

@@ -1,18 +1,15 @@
-import { IsNotEmpty, IsDateString } from 'class-validator';
+import { IsDateString } from 'class-validator';
 
 export class FilterRideDto {
-  @IsNotEmpty()
-  description: string;
+  description?: string;
 
-  @IsNotEmpty()
-  amount: number;
+  amount?: number;
 
-  @IsNotEmpty()
-  category: string;
+  category?: string;
 
   @IsDateString()
-  startDate: string;
+  startDate?: string;
 
   @IsDateString()
-  endDate: string;
+  endDate?: string;
 }
