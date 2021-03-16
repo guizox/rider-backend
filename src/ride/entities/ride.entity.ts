@@ -21,7 +21,7 @@ export class Ride extends BaseEntity {
   @Column()
   category: string;
 
-  @Column()
+  @Column({ name: 'created_at' })
   createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.rides, { eager: false })

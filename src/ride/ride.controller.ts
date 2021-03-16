@@ -14,6 +14,7 @@ import { CreateRideDto } from './dto/create-ride.dto';
 import { User } from 'src/auth/user.entity';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { AuthGuard } from '@nestjs/passport';
+import { FilterRideDto } from './dto/FilterRideDto';
 
 @Controller('ride')
 @UseGuards(AuthGuard())
@@ -26,9 +27,14 @@ export class RideController {
     return this.rideService.create(createRideDto, user);
   }
 
-  @Get()
-  findAll(@GetUser() user: User) {
-    return this.rideService.findAll(user);
+  @Post('/findAll')
+  findAll(@GetUser() user: User, @Body() filterRideDto?: FilterRideDto) {
+    return this.rideService.findAll(user, filterRideDto);
+  }
+
+  @Get('/categories')
+  getCategories(@GetUser() user: User) {
+    return this.rideService.getAllCategories(user);
   }
 
   @Get(':id')
