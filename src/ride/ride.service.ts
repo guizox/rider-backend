@@ -4,6 +4,7 @@ import { CreateRideDto } from './dto/create-ride.dto';
 import { FilterRideDto } from './dto/FilterRideDto';
 import { RideRepository } from './ride.repository';
 import * as moment from 'moment';
+import { Ride } from './entities/ride.entity';
 
 @Injectable()
 export class RideService {
@@ -82,6 +83,8 @@ export class RideService {
       .where({ userId: user.id })
       .groupBy('category');
 
-    return await queryBuilder.getMany();
+    const response = await queryBuilder.getRawMany();
+
+    return response.map((item: Ride) => item.category);
   }
 }
