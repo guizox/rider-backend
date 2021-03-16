@@ -20,23 +20,23 @@ export class RideService {
       .createQueryBuilder()
       .where({ userId: user.id });
 
-    if (amount) {
+    if (!!amount) {
       queryBuilder.andWhere(`amount = :amount`).setParameter('amount', amount);
     }
 
-    if (category) {
+    if (!!category) {
       queryBuilder
         .andWhere(`category = :category`)
         .setParameter('category', category);
     }
 
-    if (description) {
+    if (!!description) {
       queryBuilder
         .andWhere(`description = :description`)
         .setParameter('description', description);
     }
 
-    if (startDate) {
+    if (!!startDate) {
       queryBuilder
         .andWhere('created_at >= :startDate')
         .setParameter(
@@ -45,7 +45,7 @@ export class RideService {
         );
     }
 
-    if (endDate) {
+    if (!!endDate) {
       queryBuilder
         .andWhere('created_at <= :endDate')
         .setParameter(
