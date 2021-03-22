@@ -1,7 +1,7 @@
 db:
-  host: 'localhost'
+  host: 'ridesdatabase.cermvkochgik.us-east-2.rds.amazonaws.com'
   username: 'postgres'
-  password: 'guizo123'
+  password: 'Eusoubonito2#'
   syncronyze: true
 
 jwt:

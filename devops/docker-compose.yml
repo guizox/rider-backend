@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  rides-backend:
+    image: rides-backend
+    container_name: rides-backend
+    hostname: rides-backend
+    build: .
+    
