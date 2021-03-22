@@ -1,26 +1,16 @@
-FROM node:12 AS builder
+FROM node:10
 
-# Create app directory
-WORKDIR /app
+USER node
+RUN mkdir -p /home/node/app
+WORKDIR /home/node/app
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY dist/* ./
-COPY prisma ./prisma/
-
-# Install app dependencies
+COPY --chown=node package*.json ./
 RUN npm install
-# Generate prisma client, leave out if generating in `postinstall` script
-RUN npx prisma generate
 
-COPY . .
+COPY --chown=node . .
 
-RUN npm run build
+ENV HOST=0.0.0.0 PORT=3000 DEBUG_PORT=9229
+EXPOSE ${PORT}
+EXPOSE ${DEBUG_PORT}
 
-FROM node:12
-
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "start" ]
