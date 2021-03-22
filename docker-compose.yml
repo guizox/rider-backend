@@ -7,4 +7,4 @@ services:
     hostname: rides-backend
     build: .
     ports: 
-        -"3000:3000"
+      - "3000:3000"
