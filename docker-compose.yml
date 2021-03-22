@@ -6,3 +6,5 @@ services:
     container_name: rides-backend
     hostname: rides-backend
     build: .
+    ports: 
+        -"3000:3000"
