@@ -13,4 +13,4 @@ ENV HOST=0.0.0.0 PORT=3000 DEBUG_PORT=9229
 EXPOSE ${PORT}
 EXPOSE ${DEBUG_PORT}
 
-CMD [ "npm", "start" ]
+ENTRYPOINT [ "npm", "start" ]
