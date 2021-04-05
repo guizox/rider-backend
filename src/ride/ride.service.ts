@@ -56,7 +56,7 @@ export class RideService {
         );
     }
 
-    queryBuilder.orderBy('createdAt', 'ASC');
+    queryBuilder.orderBy('created_at', 'ASC');
 
     return await queryBuilder.getMany();
   }
