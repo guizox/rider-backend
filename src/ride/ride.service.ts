@@ -5,10 +5,11 @@ import { FilterRideDto } from './dto/FilterRideDto';
 import { RideRepository } from './ride.repository';
 import * as moment from 'moment';
 import { Ride } from './entities/ride.entity';
+import { query } from 'express';
 
 @Injectable()
 export class RideService {
-  constructor(private rideRepository: RideRepository) { }
+  constructor(private rideRepository: RideRepository) {}
 
   async create(createRideDto: CreateRideDto, user: User) {
     return await this.rideRepository.createRide(createRideDto, user);
@@ -54,6 +55,8 @@ export class RideService {
           moment(endDate).format('YYYY-MM-DD 23:59:59.000'),
         );
     }
+
+    queryBuilder.orderBy('createdAt', 'ASC');
 
     return await queryBuilder.getMany();
   }
