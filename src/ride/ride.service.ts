@@ -49,7 +49,7 @@ export class RideService {
 
     if (!!endDate) {
       queryBuilder
-        .andWhere('created_at <= :endDate')
+        .andWhere('created_at < :endDate')
         .setParameter(
           'endDate',
           moment(endDate).format('YYYY-MM-DD 23:59:59.000'),

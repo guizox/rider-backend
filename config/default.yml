@@ -7,4 +7,4 @@ db:
   database: 'postgres'
 
 jwt:
-  experiesIn: 3600
+  experiesIn: 9999999999
